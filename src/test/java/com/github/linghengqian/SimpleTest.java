@@ -33,7 +33,6 @@ public class SimpleTest {
         extracted("demo_ds_11");
         extractedWithoutSeata("demo_ds_4");
         extractedWithoutSeata("demo_ds_5");
-        Awaitility.await().timeout(10L, TimeUnit.MINUTES).pollDelay(9L, TimeUnit.MINUTES).until(() -> true);
     }
 
     private static void extracted(String databaseName) {
@@ -61,6 +60,7 @@ public class SimpleTest {
             ConfigurationFactory.reload();
         }
         ContainerDatabaseDriver.killContainers();
+        Awaitility.await().timeout(3L, TimeUnit.MINUTES).pollDelay(2L, TimeUnit.MINUTES).until(() -> true);
     }
 
     private static void extractedWithoutSeata(String databaseName) {
@@ -73,5 +73,6 @@ public class SimpleTest {
             return true;
         });
         ContainerDatabaseDriver.killContainers();
+        Awaitility.await().timeout(3L, TimeUnit.MINUTES).pollDelay(2L, TimeUnit.MINUTES).until(() -> true);
     }
 }
