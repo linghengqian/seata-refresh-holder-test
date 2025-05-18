@@ -33,7 +33,7 @@ public class SimpleTest {
         extracted("demo_ds_11");
         extractedWithoutSeata("demo_ds_4");
         extractedWithoutSeata("demo_ds_5");
-        Awaitility.await().timeout(10L, TimeUnit.MINUTES).pollDelay(9L, TimeUnit.SECONDS).until(() -> true);
+        Awaitility.await().timeout(10L, TimeUnit.MINUTES).pollDelay(9L, TimeUnit.MINUTES).until(() -> true);
     }
 
     private static void extracted(String databaseName) {
