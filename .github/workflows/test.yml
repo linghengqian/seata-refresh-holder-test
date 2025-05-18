@@ -1,0 +1,32 @@
+name: Test CI
+
+on:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+concurrency:
+  group: test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  nativetest:
+    name: GraalVM - GraalVM CE for JDK ${{ matrix.java-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        os: [ 'ubuntu-latest' ]
+        java-version: [ '22.0.2' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'graalvm-community'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
+      - name: Run Test with GraalVM CE for ${{ matrix.java-version }}
+        run: ./mvnw clean test -T 1C
