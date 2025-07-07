@@ -41,10 +41,10 @@ class SimpleTest {
     @SuppressWarnings("SameParameterValue")
     private void extractedWithSeata() {
         assertThat(System.getProperty("service.default.grouplist"), is(nullValue()));
-        try (GenericContainer<?> seataContainer = new GenericContainer<>("apache/seata-server:2.3.0")
+        try (GenericContainer<?> seataContainer = new GenericContainer<>("apache/seata-server:2.4.0")
                 .withExposedPorts(7091, 8091)
                 .waitingFor(Wait.forHttp("/health").forPort(7091).forStatusCode(200).forResponsePredicate("ok"::equals));
-             PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:17.2-bookworm")
+             PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:17.5-bookworm")
                      .withCopyFileToContainer(
                              MountableFile.forHostPath(Paths.get("src/test/resources/postgres.sh").toAbsolutePath()),
                              "/docker-entrypoint-initdb.d/postgres.sh")
@@ -76,7 +76,7 @@ class SimpleTest {
 
     @SuppressWarnings("SameParameterValue")
     private void extractedWithoutSeata() throws SQLException {
-        try (PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:17.2-bookworm")
+        try (PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:17.5-bookworm")
                 .withCopyFileToContainer(
                         MountableFile.forHostPath(Paths.get("src/test/resources/postgres.sh").toAbsolutePath()),
                         "/docker-entrypoint-initdb.d/postgres.sh")) {
