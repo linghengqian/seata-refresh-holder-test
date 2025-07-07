@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
-import org.testcontainers.jdbc.ContainerDatabaseDriver;
 import org.testcontainers.utility.MountableFile;
 
 import javax.sql.DataSource;

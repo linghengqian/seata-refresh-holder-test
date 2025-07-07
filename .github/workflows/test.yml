@@ -13,13 +13,12 @@ concurrency:
 
 jobs:
   nativetest:
-    name: JDK ${{ matrix.java-version }} on ${{ matrix.os }}
+    name: JDK on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     strategy:
       matrix:
         os: [ 'ubuntu-latest' ]
-        java-version: [ '22.0.2' ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
