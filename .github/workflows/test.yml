@@ -26,5 +26,5 @@ jobs:
           distribution: 'microsoft'
           java-version: 21
           cache: 'maven'
-      - name: Run Test with GraalVM CE for ${{ matrix.java-version }}
+      - name: Run Test with JDK
         run: ./mvnw clean test -T 1C
