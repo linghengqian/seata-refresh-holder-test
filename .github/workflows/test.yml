@@ -13,22 +13,19 @@ concurrency:
 
 jobs:
   nativetest:
-    name: GraalVM - GraalVM CE for JDK ${{ matrix.java-version }} on ${{ matrix.os }}
+    name: JDK ${{ matrix.java-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     strategy:
-      max-parallel: 20
-      fail-fast: false
       matrix:
         os: [ 'ubuntu-latest' ]
         java-version: [ '22.0.2' ]
     steps:
       - uses: actions/checkout@v4
-      - uses: graalvm/setup-graalvm@v1
+      - uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'graalvm-community'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          distribution: 'microsoft'
+          java-version: 21
           cache: 'maven'
       - name: Run Test with GraalVM CE for ${{ matrix.java-version }}
         run: ./mvnw clean test -T 1C
