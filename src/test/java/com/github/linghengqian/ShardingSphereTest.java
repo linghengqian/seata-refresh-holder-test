@@ -37,7 +37,7 @@ public class ShardingSphereTest {
     @Container
     private final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:17.2-bookworm")
             .withCopyFileToContainer(
-                    MountableFile.forHostPath(Paths.get("src/test/resources/postgres.sh").toAbsolutePath()),
+                    MountableFile.forHostPath(Paths.get("src/test/resources/sh/postgres.sh").toAbsolutePath()),
                     "/docker-entrypoint-initdb.d/postgres.sh");
 
     private ProxyTestingServer proxyTestingServer;

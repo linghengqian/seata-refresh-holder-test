@@ -18,7 +18,7 @@ cd ./seata-refresh-holder-test/
 - The log is as follows.
 
 ```shell
-PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw clean test -T 1C
+PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw clean test -T 1C           
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] Using the MultiThreadedBuilder implementation with a thread count of 16
@@ -51,19 +51,19 @@ PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw clean test
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.github.linghengqian.ShardingSphereTest
-[ERROR] 2025-07-11 15:56:06.648 [ForkJoinPool.commonPool-worker-1] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 15:58:13.114 [ForkJoinPool.commonPool-worker-1] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 15:56:08.364 [Connection-2-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 15:58:14.728 [Connection-2-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 15:56:08.659 [Connection-3-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 15:58:15.001 [Connection-3-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 15:56:16.037 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 15:58:22.214 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.00 s -- in com.github.linghengqian.ShardingSphereTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.80 s -- in com.github.linghengqian.ShardingSphereTest
 [INFO] Running com.github.linghengqian.SimpleTest
-[ERROR] 2025-07-11 15:56:22.665 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 15:58:28.699 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.409 s -- in com.github.linghengqian.SimpleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.477 s -- in com.github.linghengqian.SimpleTest
 [INFO] 
 [INFO] Results:
 [INFO]
@@ -72,7 +72,7 @@ org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found servi
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  29.037 s (Wall Clock)
-[INFO] Finished at: 2025-07-11T15:56:24+08:00
+[INFO] Total time:  28.813 s (Wall Clock)
+[INFO] Finished at: 2025-07-11T15:58:30+08:00
 [INFO] ------------------------------------------------------------------------
 ```
