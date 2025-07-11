@@ -61,6 +61,7 @@ public class ShardingSphereTest {
         Awaitility.await().pollDelay(5L, TimeUnit.SECONDS).until(() -> true); // TODO Apparently there is a real connection leak on Seata Client 2.4.0.
         System.clearProperty("service.default.grouplist");
         proxyTestingServer.close(Collections.singletonList("sharding_db"));
+        Awaitility.await().timeout(1L, TimeUnit.HOURS).pollDelay(2L, TimeUnit.MINUTES).until(() -> true);
     }
 
     private void testPostgresWithSeata() throws SQLException {

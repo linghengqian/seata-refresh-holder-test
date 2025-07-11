@@ -15,10 +15,17 @@ cd ./seata-refresh-holder-test/
 ./mvnw clean test -T 1C
 ```
 
+- Can be tested individually.
+
+```shell
+cd ./seata-refresh-holder-test/
+./mvnw -T 1C "-Dtest=ShardingSphereTest" clean test
+```
+
 - The log is as follows.
 
 ```shell
-PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw clean test -T 1C           
+PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw -T 1C "-Dtest=ShardingSphereTest" clean test
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] Using the MultiThreadedBuilder implementation with a thread count of 16
@@ -51,28 +58,48 @@ PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw clean test
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.github.linghengqian.ShardingSphereTest
-[ERROR] 2025-07-11 15:58:13.114 [ForkJoinPool.commonPool-worker-1] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:05:07.688 [ForkJoinPool.commonPool-worker-1] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 15:58:14.728 [Connection-2-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:05:09.252 [Connection-2-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 15:58:15.001 [Connection-3-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:05:09.516 [Connection-3-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 15:58:22.214 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:05:16.683 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.80 s -- in com.github.linghengqian.ShardingSphereTest
-[INFO] Running com.github.linghengqian.SimpleTest
-[ERROR] 2025-07-11 15:58:28.699 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
-org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.477 s -- in com.github.linghengqian.SimpleTest
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 137.6 s <<< FAILURE! -- in com.github.linghengqian.ShardingSphereTest
+[ERROR] com.github.linghengqian.ShardingSphereTest.test -- Time elapsed: 137.4 s <<< ERROR!
+java.lang.NullPointerException: Cannot read field "tableMetaRefreshQueue" because "x0" is null
+        at org.apache.seata.rm.datasource.sql.struct.TableMetaCacheFactory$TableMetaRefreshHolder.access$000(TableMetaCacheFactory.java:112)
+        at org.apache.seata.rm.datasource.sql.struct.TableMetaCacheFactory.tableMetaRefreshEvent(TableMetaCacheFactory.java:98)
+        at org.apache.seata.rm.datasource.sql.struct.TableMetaCacheFactory$TableMetaRefreshHolder.lambda$new$0(TableMetaCacheFactory.java:131)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+        at java.base/java.lang.Thread.run(Thread.java:1570)
+
 [INFO] 
 [INFO] Results:
 [INFO]
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[ERROR] Errors: 
+[ERROR]   ShardingSphereTest.test ? NullPointer Cannot read field "tableMetaRefreshQueue" because "x0" is null
+[INFO]
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
+[INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  28.813 s (Wall Clock)
-[INFO] Finished at: 2025-07-11T15:58:30+08:00
+[INFO] Total time:  02:22 min (Wall Clock)
+[INFO] Finished at: 2025-07-11T16:07:18+08:00
 [INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test (default-test) on project seata-refresh-holder-test:
+[ERROR]
+[ERROR] Please refer to D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
 ```

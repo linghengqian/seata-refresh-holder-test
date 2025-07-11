@@ -27,4 +27,4 @@ jobs:
           java-version: 21
           cache: 'maven'
       - name: Run Test with JDK
-        run: ./mvnw clean test -T 1C
+        run: ./mvnw -T 1C "-Dtest=ShardingSphereTest" clean test
