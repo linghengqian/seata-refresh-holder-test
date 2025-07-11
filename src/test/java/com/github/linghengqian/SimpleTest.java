@@ -9,7 +9,6 @@ import org.apache.seata.rm.RMClient;
 import org.apache.seata.rm.datasource.DataSourceProxy;
 import org.apache.seata.tm.TMClient;
 import org.awaitility.Awaitility;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -18,13 +17,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
 
-import javax.sql.DataSource;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -50,7 +45,6 @@ class SimpleTest {
     @Test
     void test() throws SQLException {
         testPostgresWithSeata();
-        Awaitility.await().timeout(1L, TimeUnit.HOURS).pollDelay(10L, TimeUnit.MINUTES).until(() -> true);
     }
 
     private void testPostgresWithSeata() throws SQLException {
@@ -68,62 +62,10 @@ class SimpleTest {
             seataDataSource.getConnection().close();
             return true;
         });
-        executePostgresSQL(seataDataSource);
+        DbUtil.executePostgresSQL(seataDataSource);
         System.clearProperty("service.default.grouplist");
         TmNettyRemotingClient.getInstance().destroy();
         RmNettyRemotingClient.getInstance().destroy();
         ConfigurationFactory.reload();
-    }
-
-    private void executePostgresSQL(DataSource dataSource) throws SQLException {
-        try (Connection connection = dataSource.getConnection()) {
-            connection.createStatement().execute("""
-                    CREATE TABLE IF NOT EXISTS t_order (
-                        order_id BIGSERIAL NOT NULL PRIMARY KEY,
-                        order_type INTEGER,
-                        user_id INTEGER NOT NULL,
-                        phone VARCHAR(50) NOT NULL,
-                        status VARCHAR(50)
-                    )
-                    """);
-            connection.createStatement().execute("TRUNCATE TABLE t_order");
-        }
-        try (Connection conn = dataSource.getConnection()) {
-            try {
-                conn.setAutoCommit(false);
-                conn.createStatement().executeUpdate("INSERT INTO t_order (order_id, user_id, phone, status) VALUES (2024, 2024, '13800000001', 'INSERT_TEST')");
-                conn.createStatement().executeUpdate("INSERT INTO t_order_does_not_exist (test_id_does_not_exist) VALUES (2024)");
-                conn.commit();
-            } catch (final SQLException ignored) {
-                conn.rollback();
-            } finally {
-                conn.setAutoCommit(true);
-            }
-        }
-        try (Connection conn = dataSource.getConnection()) {
-            ResultSet resultSet = conn.createStatement().executeQuery("SELECT * FROM t_order WHERE user_id = 2024");
-            assertThat(resultSet.next(), CoreMatchers.is(false));
-        }
-        try (Connection conn = dataSource.getConnection()) {
-            try {
-                conn.setAutoCommit(false);
-                conn.createStatement().executeUpdate("INSERT INTO t_order (order_id, user_id, phone, status) VALUES (2025, 2025, '13800000001', 'INSERT_TEST')");
-                conn.commit();
-            } catch (final SQLException ignored) {
-                conn.rollback();
-            } finally {
-                conn.setAutoCommit(true);
-            }
-        }
-        try (Connection conn = dataSource.getConnection()) {
-            ResultSet resultSet = conn.createStatement().executeQuery("SELECT * FROM t_order WHERE user_id = 2025");
-            assertThat(resultSet.next(), CoreMatchers.is(true));
-        }
-        try (Connection connection = dataSource.getConnection()) {
-            connection.createStatement().execute("DELETE FROM t_order WHERE user_id = 2025");
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM t_order WHERE user_id = 2025");
-            assertThat(resultSet.next(), CoreMatchers.is(false));
-            connection.createStatement().execute("DROP TABLE IF EXISTS t_order");
-        }
     }
 }
