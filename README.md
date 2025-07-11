@@ -1,6 +1,6 @@
 # seata-refresh-holder-test
 
-- For https://github.com/apache/shardingsphere/pull/35427 .
+- For https://github.com/apache/shardingsphere/pull/35427 and https://github.com/apache/incubator-seata/issues/7523 .
 
 - Execute the following command on the `Windows 11 24H2` instance with `PowerShell/PowerShell`,
   `version-fox/vfox`, `git-for-windows/git` and `rancher-sandbox/rancher-desktop` installed.
