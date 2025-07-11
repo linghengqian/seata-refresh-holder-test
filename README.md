@@ -37,7 +37,7 @@ PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw -T 1C "-Dt
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ seata-refresh-holder-test ---
 [INFO] Deleting D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test\target
-[INFO] 
+[INFO]
 [INFO] --- resources:3.3.1:resources (default-resources) @ seata-refresh-holder-test ---
 [INFO] skip non existing resourceDirectory D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test\src\main\resources
 [INFO]
@@ -46,7 +46,7 @@ PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw -T 1C "-Dt
 [INFO]
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ seata-refresh-holder-test ---
 [INFO] Copying 6 resources from src\test\resources to target\test-classes
-[INFO]
+[INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ seata-refresh-holder-test ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 4 source files with javac [debug release 21] to target\test-classes
@@ -58,16 +58,16 @@ PS D:\TwinklingLiftWorks\git\public\seata-refresh-holder-test> ./mvnw -T 1C "-Dt
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.github.linghengqian.ShardingSphereTest
-[ERROR] 2025-07-11 16:05:07.688 [ForkJoinPool.commonPool-worker-1] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:57:43.633 [ForkJoinPool.commonPool-worker-1] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 16:05:09.252 [Connection-2-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:57:45.199 [Connection-2-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 16:05:09.516 [Connection-3-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:57:45.701 [Connection-3-ThreadExecutor] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] 2025-07-11 16:05:16.683 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
+[ERROR] 2025-07-11 16:57:54.301 [main] o.a.s.config.ConfigurationFactory - failed to load non-spring configuration :not found service provider for : org.apache.seata.config.ConfigurationProvider
 org.apache.seata.common.loader.EnhancedServiceNotFoundException: not found service provider for : org.apache.seata.config.ConfigurationProvider
-[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 137.6 s <<< FAILURE! -- in com.github.linghengqian.ShardingSphereTest
-[ERROR] com.github.linghengqian.ShardingSphereTest.test -- Time elapsed: 137.4 s <<< ERROR!
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 140.9 s <<< FAILURE! -- in com.github.linghengqian.ShardingSphereTest
+[ERROR] com.github.linghengqian.ShardingSphereTest.test -- Time elapsed: 140.8 s <<< ERROR!
 java.lang.NullPointerException: Cannot read field "tableMetaRefreshQueue" because "x0" is null
         at org.apache.seata.rm.datasource.sql.struct.TableMetaCacheFactory$TableMetaRefreshHolder.access$000(TableMetaCacheFactory.java:112)
         at org.apache.seata.rm.datasource.sql.struct.TableMetaCacheFactory.tableMetaRefreshEvent(TableMetaCacheFactory.java:98)
@@ -88,8 +88,8 @@ java.lang.NullPointerException: Cannot read field "tableMetaRefreshQueue" becaus
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:22 min (Wall Clock)
-[INFO] Finished at: 2025-07-11T16:07:18+08:00
+[INFO] Total time:  02:25 min (Wall Clock)
+[INFO] Finished at: 2025-07-11T16:59:56+08:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test (default-test) on project seata-refresh-holder-test:
 [ERROR]
